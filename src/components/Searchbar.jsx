@@ -1,5 +1,5 @@
 export function Searchbar(props) {
 	return (
-		<p>Searchbar</p>
+		<input type="text" placeholder="Pesquisar..." />
 	)
 }

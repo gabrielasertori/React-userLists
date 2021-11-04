@@ -13,7 +13,6 @@ export function Sidebar() {
 				<RadioInput />
 			</div>
 			<div>
-				<h5>Idade</h5>
 				<Slidebar />
 			</div>
 		</div>

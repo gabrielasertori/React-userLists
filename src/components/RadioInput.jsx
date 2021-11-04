@@ -9,7 +9,7 @@ export function RadioInput(props) {
 				</div>
 				<div>
 					<input id="z-a" type="radio" value="Z-A"/>
-					<label for="z-a">Z - A</label>
+					<label htmlFor="z-a">Z - A</label>
 				</div>
 			</form>
 		</div>
