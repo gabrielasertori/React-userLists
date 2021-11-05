@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { Sidebar } from "./Sidebar";
-import { Users } from "../components/Users";
+import { List } from "./List";
+import { Searchbar } from "../components/Searchbar";
+import { Slidebar } from "../components/Slidebar";
+import { RadioInput } from "../components/RadioInput";
 
 export function App() {
 	const [list, setList] = useState([]);
@@ -12,25 +14,18 @@ export function App() {
 
 	}, [])
 
-	const filterFirst = (item, index) => {
-		if (index < 20) {
-			return item
-		}
-	}
-
 	return (
-		<>
-		<Sidebar infos={list}/>
-		<ul>
-			{list.filter(filterFirst).map((item, index) => {
-				return (
-					<ul key={index}>
-						<li>Nome: {item.name}</li>
-						<li>Idade: {item.age}</li>
-					</ul>
-				)
-			})}
-		</ul>
-		</>
+		<div className="sidebar">
+			<div className="sidebar-search">
+				<Searchbar info={list} />
+			</div>
+			<div>
+				<h4>Filtrar</h4>
+				<RadioInput info={list} />
+			</div>
+			<div>
+				<Slidebar info={list} />
+			</div>
+		</div>
 	)
 }
