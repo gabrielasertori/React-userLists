@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { Searchbar } from "../components/Searchbar";
 
 export function List({ list }) {
 	const [search, setSearch] = useState("");
 	const [order, setOrder] = useState(1);
 	const [columnOrder, setColumnOrder] = useState('name');
 
-	const itensPerPage = (item, index) => index < 250;
+	const itensPerPage = (item, index) => index < 50;
 
 	const searchItem = (item, index) => {
-		if (item.name.toLowerCase().startsWith(search.toLowerCase())) {
+		if (search === "") {
+			return item
+		} else if (item.name.toLowerCase().startsWith(search.toLowerCase())) {
 			return item
 		} else if (item.age.toString() === search) {
 			return item
@@ -32,8 +33,6 @@ export function List({ list }) {
 				placeholder="pesquisar"
 				onChange={e => setSearch(e.target.value)}
 			/>
-			{console.log(list)}
-
 			<table>
 				<thead>
 					<tr>
@@ -42,16 +41,14 @@ export function List({ list }) {
 					</tr>
 				</thead>
 				<tbody>
-					{list.filter(itensPerPage)
-						.filter(searchItem)
-						.map( (item, index) => {
-							return (
-								<tr key={index}>
-									<td>{item.name}</td>
-									<td>{item.age}</td>
-								</tr>
-							)
-					})}
+				{list.filter(searchItem).filter(itensPerPage).map( (item, index) => {
+						return (
+							<tr key={index}>
+								<td>{item.name}</td>
+								<td>{item.age}</td>
+							</tr>
+						)
+				})}
 				</tbody>
 			</table>
 		</div>
