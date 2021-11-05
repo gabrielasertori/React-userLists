@@ -41,7 +41,7 @@ export function List({ list }) {
 					</tr>
 				</thead>
 				<tbody>
-				{list.filter(searchItem).filter(itensPerPage).map( (item, index) => {
+				{list.filter(searchItem).map( (item, index) => {
 						return (
 							<tr key={index}>
 								<td>{item.name}</td>
