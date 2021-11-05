@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { List } from "./List";
-import Pagination from "../components/Pagination";
+import NextPage from "../components/NextPage";
 
 export function App() {
 	const [list, setList] = useState([]);
@@ -18,12 +18,13 @@ export function App() {
 	const indexOfFirstItem = indexOfLastItem - itensPerPage;
 	const currentItens = list.slice(indexOfFirstItem, indexOfLastItem);
 
+	// Move to next page
 	const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
 	return (
 		<div className="sidebar">
 			<List list={currentItens} />
-			<Pagination currentPage={currentPage} paginate={paginate}/>
+			<NextPage currentPage={currentPage} paginate={paginate}/>
 		</div>
 	)
 }
