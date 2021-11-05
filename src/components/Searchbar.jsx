@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { List } from "../containers/List";
 
 export function Searchbar(props) {
 	const list = props.info;
@@ -15,7 +14,8 @@ export function Searchbar(props) {
 			}}).map((item, index) => {
 				return (
 					<div key={index}>
-						<p>{item.name}</p>
+						<p>Nome: {item.name}</p>
+						<p>Idade: {item.age}</p>
 					</div>
 				)
 			})}
