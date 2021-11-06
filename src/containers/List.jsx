@@ -1,6 +1,6 @@
 /* V. Fetch API
 ** V. Set 2 lists (Original and Sliced)
-** 3. Set slice function
+** V. Set slice function
 ** 4. Map sliced list
 ** 5. Set pagination button
 ** 6. Implement functionality to button
@@ -19,6 +19,8 @@ import { useEffect, useState } from "react"
 const List = () => {
 	const [originalList, setOriginalList] = useState([]);
 	const [slicedList, setSlicedList] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [itensPerPage, setItensPerPage] = useState(50);
 
 	const fetchApi = () => {
 		fetch("https://random-persons.herokuapp.com/users")
@@ -32,4 +34,22 @@ const List = () => {
 	useEffect(() => {
 		fetchApi();
 	}, [])
+
+	const sliceList = (list) => {
+		const indexLastItem = currentPage * itensPerPage;
+		const indexFirstItem = indexLastItem - itensPerPage;
+		const currentItems = list.slice(indexFirstItem, indexLastItem);
+		return currentItems;
+	}
+
+	return (
+		<div>
+			<h2>Teste</h2>
+			{
+				slicedList.map(item => <p>{item.name}</p>)
+			}
+		</div>
+	)
 }
+
+export default List;
