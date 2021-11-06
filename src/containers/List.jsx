@@ -1,7 +1,7 @@
 /* V. Fetch API
 ** V. Set 2 lists (Original and Sliced)
 ** V. Set slice function
-** 4. Map sliced list
+** V. Map sliced list
 ** 5. Set pagination button
 ** 6. Implement functionality to button
 ** 7. Set searchbar
@@ -44,9 +44,29 @@ const List = () => {
 
 	return (
 		<div>
-			<h2>Teste</h2>
+			<h2>Lista de Usuários</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Idade</th>
+					</tr>
+				</thead>
+				<tbody>
+					{
+						slicedList.map((item, index) =>
+							(
+								<tr key={index}>
+								<td>{item.name}</td>
+								<td>{item.age}</td>
+								</tr>
+							)
+						)
+					}
+				</tbody>
+			</table>
 			{
-				slicedList.map(item => <p>{item.name}</p>)
+
 			}
 		</div>
 	)
