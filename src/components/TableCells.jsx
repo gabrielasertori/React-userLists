@@ -1,9 +1,7 @@
-const TableCells = ({ index, name, age, className }) => {
+const TableCells = ({ children, className, onClick }) => {
 	return (
 			<>
-			<td className={className}>{index}</td>
-			<td className={className}>{name}</td>
-			<td className={className}>{age}</td>
+			<td onClick={onClick} className={className}>{children}</td>
 			</>
 	)
 }

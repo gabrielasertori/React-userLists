@@ -1,0 +1,3 @@
+const TableRow = ({ className, tableCells }) => {
+
+}

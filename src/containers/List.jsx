@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import TableCells from "../components/TableCells";
 import Searchbar from "../components/Searchbar";
@@ -18,17 +18,13 @@ const List = () => {
 	const [columnOrder, setColumnOrder] = useState("");
 	const [order, setOrder] = useState(-1);
 
-	const fetchApi = () => {
+	useEffect(() => {
 		fetch("https://random-persons.herokuapp.com/users")
 			.then(res => res.json())
 			.then(data => {
 				setOriginalList(data.data)
 				setSlicedList(sliceList(data.data))
 			})
-	}
-
-	useEffect(() => {
-		fetchApi();
 	}, [])
 
 	const sliceList = (list) => {
@@ -50,17 +46,10 @@ const List = () => {
 	useEffect(() => {
 		const previousButton = document.querySelector(".previous");
 
-		if (currentPage <= 1) {
-			previousButton.classList.add("hidden");
-		} else {
-			previousButton.classList.remove("hidden");
-		}
+		currentPage <= 1 ? previousButton.classList.add("hidden") : previousButton.classList.remove("hidden");
 
-		if (searchList.length === 0) {
-			setSlicedList(sliceList(originalList));
-		} else {
-			setSlicedList(sliceList(searchList));
-		}
+		searchList.length === 0 ?setSlicedList(sliceList(originalList)) : setSlicedList(sliceList(searchList));
+
 	}, [currentPage])
 	// <===>
 
@@ -107,8 +96,9 @@ const List = () => {
 		<div className="list">
 			<h2 className="page-title">Lista de Usuários</h2>
 			<div className="search">
-				<label>Pesquisar</label>
+				<label for="searchbar">Pesquisar</label>
 				<Searchbar
+					id="searchbar"
 					className="list__search"
 					placeholder="Id, Nome, ou Idade"
 					onChange={(e) => searchBar(e.target.value)}
@@ -120,17 +110,19 @@ const List = () => {
 				cellPadding="0">
 				<thead>
 					<tr className="table__head">
-						<th className="table__head___cell">nº</th>
-						<th
+						<TableCells className="table__head___cell">nº</TableCells>
+						<TableCells
 							className="table__head___cell"
-							onClick={(e) => ordenate("name")}>
+							onClick={(e) => ordenate("name")}
+							>
 								Nome
-						</th>
-						<th
+						</TableCells>
+						<TableCells
 							className="table__head___cell"
-							onClick={(e) => ordenate("age")}>
+							onClick={(e) => ordenate("age")}
+							>
 								Idade
-						</th>
+						</TableCells>
 					</tr>
 				</thead>
 				<tbody className="table__body">
@@ -138,10 +130,18 @@ const List = () => {
 						return (
 							<tr key={index} className="table__body___row">
 								<TableCells
-									className="table__body___cell"
-									index={index}
-									name={item.name}
-									age={item.age}/>
+									className="table__body___cell">
+										{index}
+								</TableCells>
+								<TableCells
+									className="table__body___cell">
+										{item.name}
+								</TableCells>
+								<TableCells
+									className="table__body___cell">
+										{item.age}
+								</TableCells>
+
 							</tr>
 						)
 					})
