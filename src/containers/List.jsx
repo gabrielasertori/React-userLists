@@ -14,6 +14,8 @@
 */
 
 import { useEffect, useState } from "react"
+import Button from "../components/Button";
+import '../styles/global.css'
 
 
 const List = () => {
@@ -42,6 +44,27 @@ const List = () => {
 		return currentItems;
 	}
 
+	// ===> Paginate the page <===
+	const previousPage = () => {
+		setCurrentPage(currentPage - 1);
+	}
+
+	const nextPage = () => {
+		setCurrentPage(currentPage + 1);
+	}
+
+	useEffect(() => {
+		const previousButton = document.querySelector(".previous");
+
+		if (currentPage <= 1) {
+			previousButton.classList.add("hidden");
+		} else {
+			previousButton.classList.remove("hidden");
+		}
+		setSlicedList(sliceList(originalList));
+	}, [currentPage])
+	// <===>
+
 	return (
 		<div>
 			<h2>Lista de Usuários</h2>
@@ -65,9 +88,8 @@ const List = () => {
 					}
 				</tbody>
 			</table>
-			{
-
-			}
+			<Button className="previous hidden" paginate={previousPage}>Anterior</Button>
+			<Button paginate={nextPage}>Próximo</Button>
 		</div>
 	)
 }
