@@ -1,0 +1,17 @@
+.search {
+	display: flex;
+	flex-direction: column;
+	margin: 50px 0;
+}
+
+label {
+	color: var(--metal-darker);
+	font-weight: 500;
+	font-size: 0.925rem;
+}
+
+.list__search {
+	border: none;
+	margin: 10px 0;
+	padding: 15px 25px;
+}

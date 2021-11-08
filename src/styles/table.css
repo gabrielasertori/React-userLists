@@ -1,0 +1,28 @@
+.table {
+	margin-bottom: 50px;
+}
+
+.table__head___cell {
+	color: var(--metal-darker);
+	font-weight: 500;
+	font-size: 0.925rem;
+	padding: 15px;
+	text-align: left;
+	text-transform: uppercase;
+}
+
+.table__body___row:nth-child(2n+1) {
+	background: var(--metal);
+}
+
+.table__body___row:nth-child(2n) {
+	background: var(--metal-lighter);
+}
+
+.table__body___row {
+	font-weight: 500;
+}
+
+.table__body___cell {
+	padding: 15px;
+}

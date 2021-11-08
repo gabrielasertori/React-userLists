@@ -1,24 +1,12 @@
-/* V. Fetch API
-** V. Set 2 lists (Original and Sliced)
-** V. Set slice function
-** V. Map sliced list
-** V. Set pagination button
-** V. Implement functionality to button
-** V. Set searchbar
-** V. Implement functionality to searchbar
-** 9. Set sort by column
-** 10. Implement functionality to sort
-** 11. Style componentes
-** 12. Style list
-** 13. Style page
-*/
-
 import { useEffect, useState } from "react"
 import Button from "../components/Button";
 import TableCells from "../components/TableCells";
 import Searchbar from "../components/Searchbar";
 import '../styles/global.css';
+import '../styles/buttons.css';
 import '../styles/list.css';
+import '../styles/searchbar.css';
+import '../styles/table.css';
 
 
 const List = () => {
@@ -27,6 +15,8 @@ const List = () => {
 	const [searchList, setSearchList] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [itensPerPage, setItensPerPage] = useState(50);
+	const [columnOrder, setColumnOrder] = useState("");
+	const [order, setOrder] = useState(-1);
 
 	const fetchApi = () => {
 		fetch("https://random-persons.herokuapp.com/users")
@@ -96,23 +86,51 @@ const List = () => {
 	}, [searchList])
 	// <===>
 
+	// ===> Ordenate <===
+	const ordenate = (field) => {
+		setOrder(-order);
+		setColumnOrder(field);
+	}
+
+	const sortList = (list) => {
+		return list.sort((a, b) => {
+			return a[columnOrder] < b[columnOrder] ? -order : order;
+		})
+	}
+
+	useEffect(() => {
+		setSlicedList(sliceList(sortList(originalList)));
+	}, [order])
+	// <===>
+
 	return (
 		<div className="list">
 			<h2 className="page-title">Lista de Usuários</h2>
-			<Searchbar
-				className="list__search"
-				placeholder="Id, Nome, ou Idade"
-				onChange={(e) => searchBar(e.target.value)}
-			/>
+			<div className="search">
+				<label>Pesquisar</label>
+				<Searchbar
+					className="list__search"
+					placeholder="Id, Nome, ou Idade"
+					onChange={(e) => searchBar(e.target.value)}
+				/>
+			</div>
 			<table
 				className="table"
-				cellspacing="0"
-				cellpadding="0">
+				cellSpacing="0"
+				cellPadding="0">
 				<thead>
 					<tr className="table__head">
-						<th className="table__head___cell">Id</th>
-						<th className="table__head___cell">Nome</th>
-						<th className="table__head___cell">Idade</th>
+						<th className="table__head___cell">nº</th>
+						<th
+							className="table__head___cell"
+							onClick={(e) => ordenate("name")}>
+								Nome
+						</th>
+						<th
+							className="table__head___cell"
+							onClick={(e) => ordenate("age")}>
+								Idade
+						</th>
 					</tr>
 				</thead>
 				<tbody className="table__body">

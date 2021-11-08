@@ -1,0 +1,18 @@
+.buttons {
+	display: flex;
+}
+
+.next, .previous {
+	margin-bottom: 100px;
+	padding: 15px 100px;
+	background-color: var(--green);
+}
+
+.previous {
+	margin-right: 30px;
+}
+
+.next:hover, .previous:hover {
+	background-color: var(--green-darker);
+	cursor: pointer;
+}
