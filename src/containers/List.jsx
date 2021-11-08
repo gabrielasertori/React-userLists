@@ -16,8 +16,9 @@
 import { useEffect, useState } from "react"
 import Button from "../components/Button";
 import TableCells from "../components/TableCells";
-import Searchbar from "./Searchbar";
-import '../styles/global.css'
+import Searchbar from "../components/Searchbar";
+import '../styles/global.css';
+import '../styles/list.css';
 
 
 const List = () => {
@@ -96,25 +97,30 @@ const List = () => {
 	// <===>
 
 	return (
-		<div>
-			<h2>Lista de Usuários</h2>
+		<div className="list">
+			<h2 className="page-title">Lista de Usuários</h2>
 			<Searchbar
-				placeholder="Pesquisar..."
+				className="list__search"
+				placeholder="Id, Nome, ou Idade"
 				onChange={(e) => searchBar(e.target.value)}
 			/>
-			<table>
+			<table
+				className="table"
+				cellspacing="0"
+				cellpadding="0">
 				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Nome</th>
-						<th>Idade</th>
+					<tr className="table__head">
+						<th className="table__head___cell">Id</th>
+						<th className="table__head___cell">Nome</th>
+						<th className="table__head___cell">Idade</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody className="table__body">
 					{slicedList.map((item, index) => {
 						return (
-							<tr key={index}>
+							<tr key={index} className="table__body___row">
 								<TableCells
+									className="table__body___cell"
 									index={index}
 									name={item.name}
 									age={item.age}/>
@@ -124,15 +130,18 @@ const List = () => {
 					}
 				</tbody>
 			</table>
-			<Button
-				className="previous hidden"
-				paginate={previousPage}>
-					Anterior
-			</Button>
-			<Button
-				paginate={nextPage}>
-					Próximo
-			</Button>
+			<div className="buttons">
+				<Button
+					className="previous hidden"
+					paginate={previousPage}>
+						Anterior
+				</Button>
+				<Button
+					className="next"
+					paginate={nextPage}>
+						Próximo
+				</Button>
+			</div>
 		</div>
 	)
 }

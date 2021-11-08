@@ -1,9 +1,9 @@
-const TableCells = ({ index, name, age }) => {
+const TableCells = ({ index, name, age, className }) => {
 	return (
 			<>
-			<td>{index}</td>
-			<td>{name}</td>
-			<td>{age}</td>
+			<td className={className}>{index}</td>
+			<td className={className}>{name}</td>
+			<td className={className}>{age}</td>
 			</>
 	)
 }
