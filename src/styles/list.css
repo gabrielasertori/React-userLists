@@ -22,7 +22,7 @@
 }
 
 .table__head___cell {
-	color: var(--metal);
+	color: var(--metal-darker);
 	font-weight: 500;
 	font-size: 0.925rem;
 	padding: 15px;
@@ -61,5 +61,6 @@
 }
 
 .next:hover, .previous:hover {
+	background-color: var(--green-darker);
 	cursor: pointer;
 }

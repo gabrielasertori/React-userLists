@@ -10,11 +10,10 @@
 :root {
 	--metal: #2a363bff;
 	--metal-lighter: rgba(42, 54, 59, 0.7);
+	--metal-darker: rgb(24, 31, 34);
 	--white: #fff;
-	--red: #e84a5fff;
-	--salmon: #ff847cff;
-	--peach: #fecea8ff;
 	--green: #99b898ff;
+	--green-darker: rgb(123, 160, 122);
 	--bg: #2a363bff;
 	--bg-webkit: -webkit-linear-gradient(to top, #2a363bff, #e84a5fff, #ff847cff, #fecea8ff, #99b898ff);
 	--bg-gradient: linear-gradient(to top, #2a363bff, #e84a5fff, #ff847cff, #fecea8ff, #99b898ff);
