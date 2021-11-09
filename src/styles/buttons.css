@@ -3,7 +3,7 @@
 }
 
 .next, .previous {
-	margin-bottom: 100px;
+	margin-bottom: 10vh;
 	padding: 15px 100px;
 	background-color: var(--green);
 }

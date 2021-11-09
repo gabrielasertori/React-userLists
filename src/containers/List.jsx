@@ -7,6 +7,7 @@ import '../styles/buttons.css';
 import '../styles/list.css';
 import '../styles/searchbar.css';
 import '../styles/table.css';
+import '../styles/responsive.css';
 
 
 const List = () => {
@@ -126,7 +127,7 @@ const List = () => {
 				<Searchbar
 					id="searchbar"
 					className="list__search"
-					placeholder="Id, Nome, ou Idade"
+					placeholder="Nome ou Idade"
 					onChange={(e) => searchBar(e.target.value)}
 				/>
 			</div>
