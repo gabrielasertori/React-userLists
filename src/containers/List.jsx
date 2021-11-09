@@ -8,6 +8,7 @@ import '../styles/list.css';
 import '../styles/searchbar.css';
 import '../styles/table.css';
 import '../styles/responsive.css';
+import '../styles/loading.css';
 
 
 const List = () => {
@@ -140,6 +141,7 @@ const List = () => {
 					<option value="150">150</option>
 				</select>
 			</div>
+			{slicedList.length > 0 ?
 			<table
 				className="table"
 				cellSpacing="0"
@@ -183,10 +185,10 @@ const List = () => {
 								</TableCells>
 							</tr>
 						)
-					})
-					}
+					})}
 				</tbody>
 			</table>
+			: <div className="loading"><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div> }
 			<div className="buttons">
 				<Button
 					className="previous hidden"
