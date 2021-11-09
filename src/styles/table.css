@@ -11,6 +11,28 @@
 	text-transform: uppercase;
 }
 
+.td:hover {
+	cursor: pointer;
+}
+
+.td {
+	display: flex;
+	justify-content: end;
+	margin-top: 0.925rem;
+}
+
+.arrow {
+	background-image: url(../../img/icons8-triangle-arrow-24.png);
+	background-size: contain;
+	display: inline-block;
+	height: 15px;
+	width: 15px;
+}
+
+.up {
+	transform: rotate(180deg);
+}
+
 .table__body___row:nth-child(2n+1) {
 	background: var(--metal);
 }

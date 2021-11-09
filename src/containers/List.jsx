@@ -14,9 +14,10 @@ const List = () => {
 	const [slicedList, setSlicedList] = useState([]);
 	const [searchList, setSearchList] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [itensPerPage, setItensPerPage] = useState(50);
+	const [itensPerPage, setItensPerPage] = useState(10);
 	const [columnOrder, setColumnOrder] = useState("");
 	const [order, setOrder] = useState(-1);
+	const [isArrowUp, setIsArrowUp] = useState(false);
 
 	useEffect(() => {
 		fetch("https://random-persons.herokuapp.com/users")
@@ -48,9 +49,21 @@ const List = () => {
 
 		currentPage <= 1 ? previousButton.classList.add("hidden") : previousButton.classList.remove("hidden");
 
-		searchList.length === 0 ?setSlicedList(sliceList(originalList)) : setSlicedList(sliceList(searchList));
+		searchList.length === 0 ? setSlicedList(sliceList(originalList)) : setSlicedList(sliceList(searchList));
 
 	}, [currentPage])
+
+	const numPerPage = () => {
+		const options = document.getElementById("select");
+		options.addEventListener('click', () => {
+			setItensPerPage(options.options[options.selectedIndex].value);
+		})
+	}
+
+	useEffect(() => {
+		numPerPage();
+		searchList.length === 0 ? setSlicedList(sliceList(originalList)) : setSlicedList(sliceList(searchList));
+	}, [itensPerPage])
 	// <===>
 
 	// ===> Searchbar <===
@@ -76,7 +89,20 @@ const List = () => {
 	// <===>
 
 	// ===> Ordenate <===
-	const ordenate = (field) => {
+	const arrowUp= (id) => {
+		const arrow = document.getElementById(id);
+
+		if (!isArrowUp) {
+			setIsArrowUp(true);
+			arrow.classList.add("up");
+		} else {
+			setIsArrowUp(false);
+			arrow.classList.remove("up");
+		}
+	}
+
+	const ordenate = (field, id) => {
+		arrowUp(id);
 		setOrder(-order);
 		setColumnOrder(field);
 	}
@@ -96,13 +122,22 @@ const List = () => {
 		<div className="list">
 			<h2 className="page-title">Lista de Usuários</h2>
 			<div className="search">
-				<label for="searchbar">Pesquisar</label>
+				<label htmlFor="searchbar">Pesquisar</label>
 				<Searchbar
 					id="searchbar"
 					className="list__search"
 					placeholder="Id, Nome, ou Idade"
 					onChange={(e) => searchBar(e.target.value)}
 				/>
+			</div>
+			<div>
+				<label htmlFor="select" className="label_itensPerPage">nº por página</label>
+				<select id="select" className="itensPerPage">
+					<option value="10">10</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+					<option value="150">150</option>
+				</select>
 			</div>
 			<table
 				className="table"
@@ -112,14 +147,18 @@ const List = () => {
 					<tr className="table__head">
 						<TableCells className="table__head___cell">nº</TableCells>
 						<TableCells
+							id="table-name"
+							span="arrow"
 							className="table__head___cell"
-							onClick={(e) => ordenate("name")}
+							onClick={(e) => ordenate("name", "table-name")}
 							>
 								Nome
 						</TableCells>
 						<TableCells
+							id="table-age"
+							span="arrow"
 							className="table__head___cell"
-							onClick={(e) => ordenate("age")}
+							onClick={(e) => ordenate("age", "table-age")}
 							>
 								Idade
 						</TableCells>
@@ -131,7 +170,7 @@ const List = () => {
 							<tr key={index} className="table__body___row">
 								<TableCells
 									className="table__body___cell">
-										{index}
+										{index + 1}
 								</TableCells>
 								<TableCells
 									className="table__body___cell">
@@ -141,7 +180,6 @@ const List = () => {
 									className="table__body___cell">
 										{item.age}
 								</TableCells>
-
 							</tr>
 						)
 					})

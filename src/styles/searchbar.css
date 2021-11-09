@@ -1,7 +1,7 @@
 .search {
 	display: flex;
 	flex-direction: column;
-	margin: 50px 0;
+	margin: 5px 0;
 }
 
 label {
@@ -14,4 +14,14 @@ label {
 	border: none;
 	margin: 10px 0;
 	padding: 15px 25px;
+}
+
+.label_itensPerPage {
+	margin-right: 10px;
+}
+
+.itensPerPage {
+	background-color: var(--white);
+	margin-bottom: 50px;
+	padding: 10px;
 }
