@@ -3,12 +3,11 @@
 <div align="center">
 	<div>
 		<a href="https://www.linkedin.com/in/gabriela-sertori-50b390189/">
-			<img alt="Gabriela linkedin" src="https://img.shields.io/badge/-gabisertori-blue?style=flat&logo=Linkedin&logoColor=white" />
+			<img alt="Gabriela linkedin" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
 		</a>
-		<a href="https://github.com/gabrielasertori">
-			<img alt="Gabriela Sertori" src="https://img.shields.io/badge/-gabisertori-blue?style=flat&logo=github&logoColor=white" />
-		</a>
-		<img src="https://img.shields.io/badge/language-javascript-blue" />
+		<img src="http://ForTheBadge.com/images/badges/built-with-love.svg" />
+		<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+		<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
 	</div>
 </div>
 
